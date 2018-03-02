@@ -2,7 +2,7 @@
 
 ## Scope & overall goal (from proposal)
 
-Development Seed proposed to use machine assisted tracing to generate a high-voltage (HV) grid map for three countries: Pakistan, Nigeria and Zambia. The methodology that we proposed is based on a R&D effort described in the report [Machine Learning for Africa’s Grid](http://devseed.com/ml-grid-detection/), which was further refined based on additional tests and pilots with different ML approaches and datasets.
+Development Seed proposed to use machine assisted tracing to generate a high-voltage (HV) grid map for three countries: Pakistan, Nigeria and Zambia. A full report is [available online](http://devseed.com/ml-grid-docs/). The methodology that we proposed is based on a pilot R&D effort described in the report [Machine Learning for Africa’s Grid](http://devseed.com/ml-grid-detection/).
 
 The goal here is to develop a cost-effective HV grid mapping approach that can be replicated in countries across the globe. At the end of this project, Development Seed is to publish and deliver the following to the energy team at the World Bank:
 1. a complete and accurate (within 10 meters) map of the HV transmission network in three priority countries in Africa and Asia, delivered in GeoJSON format and added directly to OSM;
@@ -18,6 +18,7 @@ We used a ML model called the "Xception" network that was pre-trained on ImageNe
 With a trained model, the final task is to run predictions entire countries (tiled to zoom 18). With this prediction map, the data-team can prioritize it's time to focus on only areas predicted to have high value.
 
 ## Files and workflow
+* **/models**			contains model architecture and weights; Can be loaded within Keras
 * **/training-roi** 	initial set of ROIs used by data-team to generate training data
 * **/utils_cloud** 		files and utility scripts to run ML model on cloud
 * **config.py** 		all configuration parameters for training and testing with the model as well as storing results
@@ -30,8 +31,3 @@ With a trained model, the final task is to run predictions entire countries (til
 * **train_xcept.py**	trains xception network, see config.py for setting parameters
 * **utils.py**			utilities for printing information, loading/saving models, creating geojsons from predictions
 * **utils_data.py**		utilities to prepare data
-
-## Stuff on S3
-* training data (prepped by data-team) in s3://ds-ml-labs/datasets/hv_training_set
-* trained models s3://ds-ml-labs/hv_grid_models/models
-* tensorboard info s3://ds-ml-labs/hv_grid_models/tensorboard
