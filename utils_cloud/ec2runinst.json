@@ -1,0 +1,12 @@
+{
+    "ImageId": "ami-78994d02",
+    "KeyName": "unet_roads_ml_key",
+    "SecurityGroups": ["docker-machine"],
+    "InstanceType": "g2.2xlarge",
+    "Monitoring": {
+        "Enabled": false
+    },
+    "IamInstanceProfile": {
+        "Name": "general-worker"
+    }
+}

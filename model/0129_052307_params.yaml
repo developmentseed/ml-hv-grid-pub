@@ -1,0 +1,23 @@
+dense_activation: relu
+dense_size: 256
+dropout_rate: 0
+freeze_cutoff: 0
+loss: binary_crossentropy
+lr_phase1: 0.0001617624055886611
+lr_phase2: 0.0004952115157918453
+n_epo_phase1: 2.0
+n_epo_phase2: 18
+optimizer: {opt_func: rmsprop}
+weight_init: glorot_uniform
+batch_size: 32
+early_stopping_min_delta: 0.01
+early_stopping_patience: 5
+img_size: !!python/tuple [256, 256, 3]
+n_epo_phase1: [2, 4]
+n_epo_phase2: 18
+n_rand_hp_iters: 3
+n_total_hp_iters: 100
+prop_total_img_set: 0.5
+reduce_lr_epsilon: 0.01
+reduce_lr_patience: 2
+shuffle_seed: 42

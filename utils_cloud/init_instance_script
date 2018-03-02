@@ -1,0 +1,15 @@
+!#/bin/bash
+
+mkdir ~/Builds
+mkdir ~/Builds/ml-hv-grid
+mkdir /mnt/models
+mkdir /mnt/tensorboard
+chmod 777 /mnt/models
+chmod 777 /mnt/tensorboard
+
+export BUILDS_DIR="/home/ec2-user/Builds/"
+
+sudo pip install keras --upgrade
+sudo pip install git+https://github.com/hyperopt/hyperopt.git
+sudo pip install h5py imageio pygeotile
+sudo pip uninstall Theano torch mxnet scikit-learn scikit-image --yes

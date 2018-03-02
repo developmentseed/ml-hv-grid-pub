@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+set -e
+
+JQ="jq --raw-output --exit-status"
+
+SCRIPT_DIR=$(dirname ${BASH_SOURCE[0]}) # warning: may not traverse symlinks properly
+CONFIG=${1:-"file://$SCRIPT_DIR/ec2runinst.json"}
+INSTANCE_NAME="unet_roads_ml_Mark"
+
+set -x
+
+# create instance
+instanceId=$(aws ec2 run-instances --cli-input-json "$CONFIG" --region us-east-1 | $JQ .Instances[].InstanceId)
+
+# tag instance
+aws ec2 create-tags --resources "$instanceId" --region us-east-1 \
+  --tags Key=Name,Value=$INSTANCE_NAME Key=Project,Value=unet-roads_ML
+
+set +x
+
+echo "Created instance $instanceId. Waiting for SSH to become available."
+
+# wait for instance to have a public IP
+for i in {1..30}; do
+  info=$(aws ec2 describe-instances --instance-ids $instanceId --region us-east-1 | $JQ .Reservations[0].Instances[0])
+  if [[ $(echo $info | $JQ .State.Name) == "running" ]]; then
+    echo "Done."
+    echo "$(echo $info | $JQ .PublicIpAddress)"
+    exit 0
+  fi
+  echo "."
+  sleep 1
+done
+
+echo "Timed out waiting for instance $instanceId to start."
+exit 1

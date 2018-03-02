@@ -1,0 +1,31 @@
+{
+  "SpotPrice": "2.6",
+  "LaunchSpecification": {
+    "ImageId": "ami-78994d02",
+    "InstanceType": "g2.8xlarge",
+    "SubnetId": "subnet-90c7c3d6",
+    "KeyName": "unet_roads_ml_key",
+    "IamInstanceProfile": {
+      "Arn": "arn:aws:iam::552819999234:instance-profile/general-worker"
+    },
+    "BlockDeviceMappings": [
+      {
+        "DeviceName": "/dev/xvda",
+        "Ebs": {
+          "DeleteOnTermination": true,
+          "VolumeType": "gp2",
+          "VolumeSize": 100,
+          "SnapshotId": "snap-0b059ec3667fad54d"
+        }
+      }
+    ],
+    "UserData": "IyEvYmluL2Jhc2gKbWtkaXIgfi9CdWlsZHMKbWtkaXIgfi9CdWlsZHMvbWwtaHYtZ3JpZApzdWRvIG1rZGlyIC9tbnQvbW9kZWxzCnN1ZG8gbWtkaXIgL21udC90ZW5zb3Jib2FyZAoKZXhwb3J0IEJVSUxEU19ESVI9Ii9ob21lL2VjMi11c2VyL0J1aWxkcy8iCgpzdWRvIHBpcCBpbnN0YWxsIGdpdCtodHRwczovL2dpdGh1Yi5jb20vaHlwZXJvcHQvaHlwZXJvcHQuZ2l0CnN1ZG8gcGlwIGluc3RhbGwgaDVweSBpbWFnZWlvCnN1ZG8gcGlwIHVuaW5zdGFsbCBUaGVhbm8gdG9yY2ggbXhuZXQgc2Npa2l0LWxlYXJuIHNjaWtpdC1pbWFnZQ==",
+    "AllSecurityGroups": [
+      {
+        "GroupId": "sg-4174943b"
+      }
+    ]
+  },
+  "InstanceCount": 1,
+  "BlockDurationMinutes": 120
+}
