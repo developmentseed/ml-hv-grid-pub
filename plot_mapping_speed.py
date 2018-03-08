@@ -78,9 +78,9 @@ properties = dict(x='Feature', palette=palette, data=mapping_features,
 fig2, (ax2_1, ax2_2) = plt.subplots(1, 2, figsize=(8, 5))
 sns.set_color_codes("pastel")
 sns.barplot(x='Country', y='Total towers', data=mapping_features, ax=ax2_1,
-            color='b', label='Total at end of project')
+            color='b', label="Total at project's end")
 sns.barplot(x='Country', y='Total substations', data=mapping_features,
-            ax=ax2_2, color='b', label='Total at end of project')
+            ax=ax2_2, color='b')
 
 ########################################
 # Total mapped by the data team
@@ -89,7 +89,7 @@ sns.set_color_codes("muted")
 sns.barplot(x='Country', y='Existing towers', data=mapping_features,
             ax=ax2_1, color='b', label='Previously existing')
 sns.barplot(x='Country', y='Existing substations', data=mapping_features,
-            ax=ax2_2, color='b', label='Previously existing')
+            ax=ax2_2, color='b')
 
 # Set labels
 ax2_1.set_ylabel('Number of towers')
@@ -97,7 +97,8 @@ ax2_2.set_ylabel('Number of substations')
 ax2_1.xaxis.labelpad = 10
 ax2_2.xaxis.labelpad = 10
 
-ax2_1.legend(loc="upper right", frameon=True)
+ax2_1.legend(loc="upper right", bbox_to_anchor=(1.3, 1.05), frameon=True,
+             fontsize=13, shadow=True)
 plt.tight_layout(w_pad=3)
 sns.despine(left=True, top=True)
 
