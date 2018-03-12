@@ -18,6 +18,7 @@ We used a ML model called the "Xception" network that was pre-trained on ImageNe
 With a trained model, the final task is to run predictions entire countries (tiled to zoom 18). With this prediction map, the data-team can prioritize it's time to focus on only areas predicted to have high value.
 
 ## Files and workflow
+* **/data**			contains final HV maps of target countries. Maps are available showing (1) the HV grid for each country at the project's end and (2) solely edits made during this project
 * **/models**			contains model architecture and weights; Can be loaded within Keras
 * **/training-roi** 	initial set of ROIs used by data-team to generate training data
 * **/utils_cloud** 		files and utility scripts to run ML model on cloud
