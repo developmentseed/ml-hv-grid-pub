@@ -36,11 +36,12 @@ fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(7.5, 10), sharex=True)
 sns.factorplot(y="km^2 per hour", hue='Country', ax=ax1, **properties)
 ax1.set_ylabel(r'km$^2$ per hour')
 
-# Towers per hour
-sns.factorplot(y="Towers per hour", hue='Country', ax=ax2, **properties)
-
 # Substations per hour
-sns.factorplot(y="Substations per hour", hue='Country', ax=ax3, **properties)
+sns.factorplot(y="Substations per hour", hue='Country', ax=ax2, **properties)
+
+# Towers per hour
+sns.factorplot(y="Towers per hour", hue='Country', ax=ax3, **properties)
+
 
 # Set hatch on averages
 for ax in [ax1, ax2, ax3]:
@@ -75,29 +76,40 @@ properties = dict(x='Feature', palette=palette, data=mapping_features,
 ########################################
 # Total features at project completion
 ########################################
-fig2, (ax2_1, ax2_2) = plt.subplots(1, 2, figsize=(8, 5))
+fig2, (ax2_1, ax2_2, ax2_3) = plt.subplots(1, 3, figsize=(11, 5))
 sns.set_color_codes("pastel")
-sns.barplot(x='Country', y='Total towers', data=mapping_features, ax=ax2_1,
-            color='b', label="Total at project's end")
+sns.barplot(x='Country', y='Total km HV line', data=mapping_features,
+            ax=ax2_1, color='b', label="Total at project's end")
 sns.barplot(x='Country', y='Total substations', data=mapping_features,
             ax=ax2_2, color='b')
+sns.barplot(x='Country', y='Total towers', data=mapping_features, ax=ax2_3,
+            color='b')
 
 ########################################
 # Total mapped by the data team
 ########################################
 sns.set_color_codes("muted")
-sns.barplot(x='Country', y='Existing towers', data=mapping_features,
+sns.barplot(x='Country', y='Existing km HV line', data=mapping_features,
             ax=ax2_1, color='b', label='Previously existing')
 sns.barplot(x='Country', y='Existing substations', data=mapping_features,
             ax=ax2_2, color='b')
+sns.barplot(x='Country', y='Existing towers', data=mapping_features,
+            ax=ax2_3, color='b')
+ax2_3.set_ylim(0, 1e5)
 
 # Set labels
-ax2_1.set_ylabel('Number of towers')
+ax2_1.set_ylabel('Km of HV line')
 ax2_2.set_ylabel('Number of substations')
-ax2_1.xaxis.labelpad = 10
-ax2_2.xaxis.labelpad = 10
+ax2_3.set_ylabel('Number of towers')
+for ax in [ax2_1, ax2_2, ax2_3]:
+    ax.tick_params(axis='x', rotation=60, pad=0)
 
-ax2_1.legend(loc="upper right", bbox_to_anchor=(1.3, 1.05), frameon=True,
+    for tick in ax.xaxis.get_major_ticks():
+        tick.label1.set_horizontalalignment('right')
+
+
+
+ax2_1.legend(loc="upper right", bbox_to_anchor=(1.555, 1.05), frameon=True,
              fontsize=13, shadow=True)
 plt.tight_layout(w_pad=3)
 sns.despine(left=True, top=True)
