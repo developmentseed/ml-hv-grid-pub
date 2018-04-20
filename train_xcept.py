@@ -145,10 +145,9 @@ def xcept_net(params):
     #for li, layer in enumerate(base_model.layers):
     #    print(li, layer.name)
 
-    for layer in model.layers[params['freeze_cutoff']:]:
+    # Set all layers trainable
+    for layer in model.layers:
         layer.trainable = True
-    for layer in model.layers[:params['freeze_cutoff']]:
-        layer.trainable = False
 
     # Recompile model for second round of training
     model.compile(optimizer=get_optimizer(params['optimizer'], params['lr_phase2']),
