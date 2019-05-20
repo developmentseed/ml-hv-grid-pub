@@ -22,13 +22,17 @@ With a trained model, the final task is to run predictions entire countries (til
 * **/models**			contains model architecture and weights; Can be loaded within Keras
 * **/training-roi** 	initial set of ROIs used by data-team to generate training data
 * **/utils_cloud** 		files and utility scripts to run ML model on cloud
-* **config.py** 		all configuration parameters for training and testing with the model as well as storing results
-* **download_tiles**.py Fetches and saves satellite imagery tiles from a list of tile indices.
-* **gen_tile_inds.py** Creates a list of tile indices from a geojson boundary
-* **plot_TP_FP_ROC.py**	runs predictions on initial test data, plots ROC curve and TP/FP distributions
-* **plot_create_embeddings.py** creates files needed for TF embedding plots. Run after "plot_TP_FP_ROC.py"
-* **plot_mapping_speed.py** Script to create a plot showing relative mapping speed for towers, substations, and km^2 per hour
-* **pred_xcept_local.py** predicts on large batches of tiles using a pre-trained model
-* **train_xcept.py**	trains xception network, see config.py for setting parameters
-* **utils.py**			utilities for printing information, loading/saving models, creating geojsons from predictions
-* **utils_data.py**		utilities to prepare data
+* **/ml_hv_grid/**
+  * **config.py** 		all configuration parameters for training and testing with the model as well as storing results
+  * **download_tiles.py** Fetches and saves satellite imagery tiles from a list of tile indices.
+  * **export_keras_ex.py** Exports a model (using TF Estimator code) for easy deployment with TF Serving
+  * **gen_tile_inds.py** Creates a list of tile indices from a geojson boundary
+  * **plot_TP_FP_ROC.py**	runs predictions on initial test data, plots ROC curve and TP/FP distributions
+  * **plot_create_embeddings.py** creates files needed for TF embedding plots. Run after "plot_TP_FP_ROC.py"
+  * **plot_mapping_speed.py** Script to create a plot showing relative mapping speed for towers, substations, and km^2 per hour
+  * **pred_xcept_local.py** predicts on large batches of tiles using a pre-trained model
+  * **train_xcept.py**	trains xception network, see config.py for setting parameters
+  * **test_xcept.py**		tests xception network and prints classification report (avg. F1-score, etc.)
+  * **utils.py**			utilities for printing information, loading/saving models, creating geojsons from predictions
+  * **utils_data.py**		utilities to prepare data
+  * **utils_training.py**	utilities functions for calculating metric scores
