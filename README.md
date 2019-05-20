@@ -9,6 +9,8 @@ The goal here is to develop a cost-effective HV grid mapping approach that can b
 1. the training data and ML models;
 1. a thoroughly documented approach that would allow the Bank or other organizations to replicate this in other countries.
 
+All data is stored within [OpenStreetMap](https://www.openstreetmap.org/).
+
 ## Machine learning approach
 
 The machine learning (ML) goal here is to detect HV towers as accurately as possible in satellite imagery. Here, we are using zoom 18 tiles, as the towers are large enough to be clearly visible. Therefore, the specific ML task is a basic form of classification -- take any zoom 18 RGB tile and calculate the probability (on the interval [0, 1]) that it contains a HV tower. By default, we can use a threshold of 0.5 as the cutoff, but this can be modified to adjust the false-positive rate. For training, several thousand images (from the Digital Globe standard layer) spanning all 3 target countries were manually checked by the Peru Data Team.
@@ -18,7 +20,6 @@ We used a ML model called the "Xception" network that was pre-trained on ImageNe
 With a trained model, the final task is to run predictions entire countries (tiled to zoom 18). With this prediction map, the data-team can prioritize it's time to focus on only areas predicted to have high value.
 
 ## Files and workflow
-* **/data**			contains final HV maps of target countries. Maps are available showing (1) the HV grid for each country at the project's end and (2) solely edits made during this project
 * **/models**			contains model architecture and weights; Can be loaded within Keras
 * **/training-roi** 	initial set of ROIs used by data-team to generate training data
 * **/utils_cloud** 		files and utility scripts to run ML model on cloud
